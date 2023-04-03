@@ -1,5 +1,7 @@
 
 
+
+
 import javax.swing.*;
 
 import java.awt.Color;
@@ -281,4 +283,5 @@ public class GradePredictorGui {
         obj1.setVisible(true);
     }
 }
+
 

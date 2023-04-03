@@ -9,34 +9,15 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class BtnOne implements ActionListener{
-        BtnOne(){
 
-            JFrame fOne=new JFrame();
-            fOne.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            fOne.setBounds(0, 0, 1650, 1080);
-            Color c1=new Color(10,50,60);
-            Container c=fOne.getContentPane();
-            c.setBackground(c1);
-            fOne.setVisible(true);
-            
-            
-            fOne.setVisible(true);
-        }
-       
-        public void actionPerformed(ActionEvent e){
-
-        }
-    
-}
 
 class BtnTwo implements ActionListener{
 
-    private JLabel gradeLabel1,gradePointLabel,gradePointLabel2;
-    private JLabel gradeCalc,gradePointCalc,minimumMarksCalc;
-    private JTextField gradeInput,gradePointInput,gradePointInput2;
-    private JButton calculateButton,calculateButton2,calculateButton3;
-    private JLabel result1,result2,result3;
+    private JLabel gradeLabel1,gradePointLabel,gradePointLabel2,creditPointLabel,creditPointLabel2;
+    private JLabel gradeCalc,gradePointCalc,minimumMarksCalc,creditPointCalc;
+    private JTextField gradeInput,gradePointInput,gradePointInput2,creditPointInput,gradePointInput4;
+    private JButton calculateButton,calculateButton2,calculateButton3,calculateButton4;
+    private JLabel result1,result2,result3,result4;
 
     BtnTwo(){
         JFrame fTwo=new JFrame();
@@ -63,7 +44,7 @@ class BtnTwo implements ActionListener{
         gradeLabel1.setForeground(Color.white);
         gradeLabel1.setBounds(200,200,150,20);
         c.add(gradeLabel1);
-
+    
         gradeInput=new JTextField();
         gradeInput.setBounds(345,200,105,30);
         c.add(gradeInput);
@@ -146,6 +127,47 @@ class BtnTwo implements ActionListener{
         result3.setForeground(Color.white);
         result3.setBounds(200,650,350,35);
         c.add(result3);
+        /***********************            CREDIT POINT CALCULATOR SECTION   **************************************/
+
+        creditPointCalc=new JLabel("CALCULATE CREDIT POINT");
+        creditPointCalc.setFont(new Font("Serif", Font.PLAIN, 22));
+        creditPointCalc.setForeground(Color.white);
+        creditPointCalc.setBounds(905,500,350,30);
+        c.add(creditPointCalc);
+        
+        creditPointLabel=new JLabel("Enter Subject Credit: ");
+        creditPointLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+        creditPointLabel.setForeground(Color.white);
+        creditPointLabel.setBounds(905,550,200,20);
+        c.add(creditPointLabel);
+
+        creditPointLabel2=new JLabel("Enter Subject GradePoint: ");
+        creditPointLabel2.setFont(new Font("Serif", Font.PLAIN, 20));
+        creditPointLabel2.setForeground(Color.white);
+        creditPointLabel2.setBounds(905,600,220,20);
+        c.add(creditPointLabel2);
+        
+        creditPointInput=new JTextField();
+        creditPointInput.setBounds(1100,550,120,30);
+        c.add(creditPointInput);
+
+        gradePointInput4=new JTextField();
+        gradePointInput4.setBounds(1120,600,100,30);
+        c.add(gradePointInput4);
+        
+        calculateButton4=new JButton("Calculate");
+        calculateButton4.setSize(315,30);
+        calculateButton4.setLocation(905,650);
+        calculateButton4.setFont(objFont);
+        calculateButton4.setCursor(objCur);
+        c.add(calculateButton4);
+        calculateButton4.addActionListener(this);
+        
+        result4=new JLabel(" ");      
+        result4.setFont(new Font("Serif", Font.PLAIN, 25));
+        result4.setForeground(Color.white);
+        result4.setBounds(905,700,350,35);
+        c.add(result4);
     
 
         fTwo.setVisible(true);
@@ -196,6 +218,14 @@ class BtnTwo implements ActionListener{
                 default:result3.setText("You will be Fail  "); break;
             }
         }
+        /*       Credit Point Calculator      */
+
+        
+        if (e.getSource() == calculateButton4) {
+           int credit=Integer.parseInt(creditPointInput.getText());
+           int gradePoint=Integer.parseInt(gradePointInput4.getText());
+           result4.setText("Credit point: "+credit*gradePoint);
+        }
 
 }
 }
@@ -219,17 +249,12 @@ public class GradePredictorGui {
         c.add(gradePredictor);
 
         
-        JButton btn1=new JButton("Full Result");
+        
         JButton btn2=new JButton("Grade, GradePoint, Minimum Marks ");
 
         Font objFont=new Font("Serif",Font.PLAIN,27);
         Cursor objCur=new Cursor(Cursor.HAND_CURSOR);
     
-        btn1.setSize(550,50);
-        btn1.setLocation(500,400);
-        btn1.setFont(objFont);
-        btn1.setCursor(objCur);
-        c.add(btn1);
         
         btn2.setSize(550,100);
         btn2.setLocation(500,460);
@@ -239,11 +264,7 @@ public class GradePredictorGui {
         
   
 
-        btn1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                new BtnOne();
-            }
-        });
+     
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 new BtnTwo();

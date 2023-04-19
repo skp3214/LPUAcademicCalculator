@@ -87,6 +87,7 @@ public class GradePredictorGui {
                 try {
                     obj1.setVisible(false);
                     JFrame f1 = new JFrame("CGPA Calculator");
+                    f1.setIconImage(icon);
                     f1.setResizable(false);
                     f1.setSize(350, 650);
                     f1.setLocationRelativeTo(null);

@@ -10,8 +10,12 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -80,81 +84,98 @@ public class GradePredictorGui {
 
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFrame f1 = new JFrame("CGPA Calculator");
-                f1.setSize(750, 850);
-                f1.setLocationRelativeTo(null);
-                f1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                try {
+                    obj1.setVisible(false);
+                    JFrame f1 = new JFrame("CGPA Calculator");
+                    f1.setResizable(false);
+                    f1.setSize(350, 650);
+                    f1.setLocationRelativeTo(null);
+                    f1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-                f1.setLayout(null);
+                    f1.setLayout(null);
 
-                JLabel subjectLabel = new JLabel("  SubjectName");
-                subjectLabel.setFont(new Font("Ariel", 1, 30));
-                JLabel marksLabel = new JLabel("  Marks");
-                marksLabel.setFont(new Font("Ariel", 1, 30));
-                JLabel creditLabel = new JLabel("  Credit");
-                creditLabel.setFont(new Font("Ariel", 1, 30));
+                    JLabel marksLabel = new JLabel("      GradePoint");
+                    marksLabel.setFont(new Font("Ariel", 1, 20));
+                    JLabel creditLabel = new JLabel("      Credit");
+                    creditLabel.setFont(new Font("Ariel", 1, 20));
 
-                int n = Integer.parseInt(JOptionPane.showInputDialog("Enter number of subjects: "));
-                JTextField[] subjectField = new JTextField[n];
-                JTextField[] marksField = new JTextField[n];
-                JTextField[] creditField = new JTextField[n];
+                    int n = Integer.parseInt(JOptionPane.showInputDialog("Enter number of subjects: "));
 
-                for (int i = 0; i < n; i++) {
-                    subjectField[i] = new JTextField(10);
-                    subjectField[i].setFont(new Font("Ariel", 1, 30));
-                    subjectField[i].setHorizontalAlignment(JTextField.CENTER);
+                    JTextField[] marksField = new JTextField[n];
+                    JTextField[] creditField = new JTextField[n];
 
-                    marksField[i] = new JTextField(5);
-                    marksField[i].setFont(new Font("Ariel", 1, 30));
-                    marksField[i].setHorizontalAlignment(JTextField.CENTER);
+                    for (int i = 0; i < n; i++) {
 
-                    creditField[i] = new JTextField(5);
-                    creditField[i].setFont(new Font("Ariel", 1, 30));
-                    creditField[i].setHorizontalAlignment(JTextField.CENTER);
-                }
+                        marksField[i] = new JTextField(5);
+                        marksField[i].setFont(new Font("Ariel", 1, 30));
+                        marksField[i].setHorizontalAlignment(JTextField.CENTER);
 
-                JButton calculateButton = new JButton("Calculate");
-                calculateButton.setBounds(10, 760, 300, 60);
-                calculateButton.setFont(new Font("Serif", 0, 50));
-                calculateButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        // calculate CGPA
-                        double totalCredit = 0.0;
-                        double totalGrade = 0.0;
-                        for (int i = 0; i < subjectField.length; i++) {
-                            double marks = Double.parseDouble(marksField[i].getText());
-                            double credit = Double.parseDouble(creditField[i].getText());
-                            totalCredit += credit;
-                            totalGrade += (marks) * credit;
-                        }
-                        double cgpa = totalGrade / totalCredit;
-                        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Arial", Font.PLAIN, 30)));
-
-                        JOptionPane.showMessageDialog(f1, "Your CGPA is: " + String.format("%.2f", cgpa));
-
+                        creditField[i] = new JTextField(5);
+                        creditField[i].setFont(new Font("Ariel", 1, 30));
+                        creditField[i].setHorizontalAlignment(JTextField.CENTER);
                     }
-                });
 
-                f1.setLayout(new BorderLayout());
-                JPanel inputPanel = new JPanel(new GridLayout(n + 1, 3));
+                    JButton calculateButton = new JButton("Calculate");
+                    calculateButton.setBounds(10, 760, 300, 60);
+                    calculateButton.setFont(new Font("Serif", 0, 50));
+                    calculateButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            // calculate CGPA
+                            try {
+                                double totalCredit = 0.0;
+                                double totalGrade = 0.0;
+                                for (int i = 0; i < n; i++) {
+                                    double marks = Double.parseDouble(marksField[i].getText());
+                                    double credit = Double.parseDouble(creditField[i].getText());
+                                    totalCredit += credit;
+                                    totalGrade += (marks) * credit;
+                                }
+                                double cgpa = totalGrade / totalCredit;
+                                UIManager.put("OptionPane.messageFont",
+                                        new FontUIResource(new Font("Arial", Font.PLAIN, 30)));
 
-                inputPanel.add(subjectLabel);
-                inputPanel.add(marksLabel);
-                inputPanel.add(creditLabel);
-                for (int i = 0; i < n; i++) {
-                    inputPanel.add(subjectField[i]);
-                    inputPanel.add(marksField[i]);
-                    inputPanel.add(creditField[i]);
+                                JOptionPane.showMessageDialog(f1, "Your CGPA is: " + String.format("%.2f", cgpa));
+                            } catch (Exception ak) {
+                                UIManager.put("OptionPane.messageFont",
+                                        new FontUIResource(new Font("Arial", Font.PLAIN, 30)));
+
+                                JOptionPane.showMessageDialog(f1, "Invalid or Incomplete Input ");
+                            }
+
+                        }
+                    });
+
+                    f1.setLayout(new BorderLayout());
+                    JPanel inputPanel = new JPanel(new GridLayout(n + 1, 3));
+
+                    inputPanel.add(marksLabel);
+                    inputPanel.add(creditLabel);
+                    for (int i = 0; i < n; i++) {
+
+                        inputPanel.add(marksField[i]);
+                        inputPanel.add(creditField[i]);
+                    }
+                    f1.add(inputPanel);
+
+                    f1.add(calculateButton, BorderLayout.SOUTH);
+                    f1.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent ke) {
+
+                            obj1.setVisible(true);
+
+                        }
+                    });
+                    f1.setVisible(true);
+                } catch (Exception me) {
+                    obj1.setVisible(true);
                 }
-                f1.add(inputPanel, BorderLayout.CENTER);
-
-                f1.add(calculateButton, BorderLayout.SOUTH);
-                f1.setVisible(true);
             }
         });
 
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                obj1.setVisible(false);
                 JFrame f = new JFrame();
                 f.setResizable(false);
                 f.setTitle("Academic Calculator");
@@ -397,7 +418,7 @@ public class GradePredictorGui {
                                     result3.setText("Result Incomplete ");
                                     break;
                                 default:
-                                    result3.setText("You will be Fail  ");
+                                    result3.setText("Invalid Input  ");
                                     break;
                             }
 
@@ -469,15 +490,79 @@ public class GradePredictorGui {
                 result4.setBounds(200, 450, 350, 35);
                 p4.add(result4);
 
-                class MyClass implements ItemListener {
+                class MyClass implements ItemListener, FocusListener {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         String item = (String) j1.getSelectedItem();
                         cl.show(mainpanel, item);
                     }
+
+                    @Override
+                    public void focusGained(FocusEvent e) {
+                        if (e.getSource() == ip1) {
+                            ip1.setEditable(true);
+                            result1.setText("Grade : ?");
+                            ip1.setText(null);
+                        }
+                        if (e.getSource() == ip2) {
+                            ip2.setEditable(true);
+                            result2.setText("Grade Point:  ?");
+                            ip2.setText(null);
+                        }
+                        if (e.getSource() == ip3) {
+                            ip3.setEditable(true);
+                            result3.setText("Minimum marks needed is ?");
+                            ip3.setText(null);
+                        }
+
+                        if (e.getSource() == ip4) {
+                            ip4.setEditable(true);
+                            result4.setText("Total Credit: ?");
+                            ip4.setText(null);
+                        }
+                        if (e.getSource() == ip5) {
+                            ip5.setEditable(true);
+                            ip5.setText(null);
+                        }
+                    }
+
+                    @Override
+                    public void focusLost(FocusEvent e) {
+                        if (e.getSource() == ip1) {
+                            ip1.setEditable(false);
+                        }
+                        if (e.getSource() == ip2) {
+                            ip2.setEditable(false);
+                        }
+                        if (e.getSource() == ip3) {
+                            ip3.setEditable(false);
+                        }
+                        if (e.getSource() == ip3) {
+                            ip3.setEditable(false);
+                        }
+                        if (e.getSource() == ip4) {
+                            ip4.setEditable(false);
+                        }
+                        if (e.getSource() == ip5) {
+                            ip5.setEditable(false);
+                        }
+                    }
                 }
                 MyClass ml = new MyClass();
                 j1.addItemListener(ml);
+                ip1.addFocusListener(ml);
+                ip2.addFocusListener(ml);
+                ip3.addFocusListener(ml);
+                ip4.addFocusListener(ml);
+                ip5.addFocusListener(ml);
+                f.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent ke) {
+
+                        obj1.setVisible(true);
+
+                    }
+                });
                 f.setVisible(true);
             }
         });

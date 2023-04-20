@@ -54,13 +54,12 @@ public class GradePredictorGui {
         JLabel gradePredictor = new JLabel("ACADEMIC");
         gradePredictor.setFont(new Font("Serif", Font.PLAIN, 70));
         gradePredictor.setForeground(Color.white);
-
         gradePredictor.setBounds(185, 0, 700, 130);
         obj1.add(gradePredictor);
+
         JLabel gradePredictor2 = new JLabel("CALCULATOR");
         gradePredictor2.setFont(new Font("Serif", Font.PLAIN, 70));
         gradePredictor2.setForeground(Color.white);
-
         gradePredictor2.setBounds(150, 65, 700, 130);
         obj1.add(gradePredictor2);
 
@@ -75,13 +74,6 @@ public class GradePredictorGui {
         btn1.setFont(objFont);
         btn1.setCursor(objCur);
         obj1.add(btn1);
-
-        btn2.setSize(600, 100);
-        btn2.setLocation(70, 460);
-        btn2.setFont(objFont);
-        btn2.setCursor(objCur);
-        obj1.add(btn2);
-
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -92,8 +84,6 @@ public class GradePredictorGui {
                     f1.setSize(350, 650);
                     f1.setLocationRelativeTo(null);
                     f1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-                    f1.setLayout(null);
 
                     JLabel marksLabel = new JLabel("      GradePoint");
                     marksLabel.setFont(new Font("Ariel", 1, 20));
@@ -121,12 +111,13 @@ public class GradePredictorGui {
                     calculateButton.setFont(new Font("Serif", 0, 50));
                     calculateButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            // calculate CGPA
+
                             try {
                                 double totalCredit = 0.0;
                                 double totalGrade = 0.0;
                                 for (int i = 0; i < n; i++) {
                                     double marks = Double.parseDouble(marksField[i].getText());
+
                                     double credit = Double.parseDouble(creditField[i].getText());
                                     totalCredit += credit;
                                     totalGrade += (marks) * credit;
@@ -147,24 +138,22 @@ public class GradePredictorGui {
                     });
 
                     f1.setLayout(new BorderLayout());
-                    JPanel inputPanel = new JPanel(new GridLayout(n + 1, 3));
 
+                    JPanel inputPanel = new JPanel(new GridLayout(n + 1, 2));
                     inputPanel.add(marksLabel);
                     inputPanel.add(creditLabel);
-                    for (int i = 0; i < n; i++) {
 
+                    for (int i = 0; i < n; i++) {
                         inputPanel.add(marksField[i]);
                         inputPanel.add(creditField[i]);
                     }
                     f1.add(inputPanel);
-
                     f1.add(calculateButton, BorderLayout.SOUTH);
+
                     f1.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosed(WindowEvent ke) {
-
                             obj1.setVisible(true);
-
                         }
                     });
                     f1.setVisible(true);
@@ -174,25 +163,27 @@ public class GradePredictorGui {
             }
         });
 
+        btn2.setSize(600, 100);
+        btn2.setLocation(70, 460);
+        btn2.setFont(objFont);
+        btn2.setCursor(objCur);
+        obj1.add(btn2);
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 obj1.setVisible(false);
                 JFrame f = new JFrame();
-                f.setResizable(false);
                 f.setTitle("Academic Calculator");
+                f.setResizable(false);
                 f.setSize(750, 850);
-                Image icon = Toolkit.getDefaultToolkit().getImage("calculator.jpg");
                 f.setIconImage(icon);
                 f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 f.setLocationRelativeTo(null);
-                Font objFont = new Font("Arial", Font.PLAIN, 20);
-                Cursor objCur = new Cursor(Cursor.HAND_CURSOR);
 
                 String[] options = { "GRADE CALCULATOR", "GRADE POINT CALCULATOR", "MINIMUM MARKS CALCULATOR",
                         "TOTAL CREDIT CALCULATOR" };
                 j1 = new JComboBox<>(options);
                 j1.setPreferredSize(new Dimension(0, 50));
-                j1.setFont(new Font(Font.SERIF, 1, 28));
+                j1.setFont(new Font(Font.SERIF, 0, 28));
                 f.add(j1, BorderLayout.NORTH);
 
                 mainpanel = new JPanel();
@@ -208,13 +199,12 @@ public class GradePredictorGui {
                 JLabel g1 = new JLabel("CALCULATE");
                 g1.setFont(new Font("Serif", Font.PLAIN, 80));
                 g1.setForeground(Color.white);
-
                 g1.setBounds(145, 0, 700, 130);
                 p1.add(g1);
+
                 JLabel g2 = new JLabel("GRADE");
                 g2.setFont(new Font("Serif", Font.PLAIN, 80));
                 g2.setForeground(Color.white);
-
                 g2.setBounds(235, 75, 700, 130);
                 p1.add(g2);
 
@@ -277,13 +267,12 @@ public class GradePredictorGui {
                 JLabel g3 = new JLabel("CALCULATE");
                 g3.setFont(new Font("Serif", Font.PLAIN, 80));
                 g3.setForeground(Color.white);
-
                 g3.setBounds(135, 0, 700, 130);
                 p2.add(g3);
+
                 JLabel g4 = new JLabel("GRADE POINT");
                 g4.setFont(new Font("Serif", Font.PLAIN, 80));
                 g4.setForeground(Color.white);
-
                 g4.setBounds(120, 75, 700, 130);
                 p2.add(g4);
 
@@ -345,13 +334,12 @@ public class GradePredictorGui {
                 JLabel g5 = new JLabel("CALCULATE");
                 g5.setFont(new Font("Serif", Font.PLAIN, 75));
                 g5.setForeground(Color.white);
-
                 g5.setBounds(135, 0, 700, 130);
                 p3.add(g5);
+
                 JLabel g6 = new JLabel("MINIMUM MARKS");
                 g6.setFont(new Font("Serif", Font.PLAIN, 75));
                 g6.setForeground(Color.white);
-
                 g6.setBounds(60, 75, 700, 130);
                 p3.add(g6);
 
@@ -436,13 +424,12 @@ public class GradePredictorGui {
                 JLabel g7 = new JLabel("CALCULATE");
                 g7.setFont(new Font("Serif", Font.PLAIN, 80));
                 g7.setForeground(Color.white);
-
                 g7.setBounds(125, 0, 700, 130);
                 p4.add(g7);
+
                 JLabel g8 = new JLabel("TOTAL CREDIT");
                 g8.setFont(new Font("Serif", Font.PLAIN, 80));
                 g8.setForeground(Color.white);
-
                 g8.setBounds(120, 75, 700, 130);
                 p4.add(g8);
 

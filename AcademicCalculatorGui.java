@@ -85,21 +85,22 @@ public class AcademicCalculatorGui {
                     f1.setLocationRelativeTo(null);
                     f1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-                    JLabel marksLabel = new JLabel("      GradePoint");
-                    marksLabel.setFont(new Font("Ariel", 1, 20));
-                    JLabel creditLabel = new JLabel("      Credit");
+                    JLabel gradeLabel = new JLabel("  Enter Grade ");
+                    gradeLabel.setFont(new Font("Ariel", 1, 20));
+                    JLabel creditLabel = new JLabel("  Enter Credit");
                     creditLabel.setFont(new Font("Ariel", 1, 20));
 
-                    int n = Integer.parseInt(JOptionPane.showInputDialog("Enter number of subjects: "));
+                    int n = Integer
+                            .parseInt(JOptionPane.showInputDialog("Enter number of subjects but less than 20: "));
 
-                    JTextField[] marksField = new JTextField[n];
+                    JTextField[] gradeField = new JTextField[n];
                     JTextField[] creditField = new JTextField[n];
 
                     for (int i = 0; i < n; i++) {
 
-                        marksField[i] = new JTextField(5);
-                        marksField[i].setFont(new Font("Ariel", 1, 30));
-                        marksField[i].setHorizontalAlignment(JTextField.CENTER);
+                        gradeField[i] = new JTextField(5);
+                        gradeField[i].setFont(new Font("Ariel", 1, 30));
+                        gradeField[i].setHorizontalAlignment(JTextField.CENTER);
 
                         creditField[i] = new JTextField(5);
                         creditField[i].setFont(new Font("Ariel", 1, 30));
@@ -113,14 +114,23 @@ public class AcademicCalculatorGui {
                         public void actionPerformed(ActionEvent e) {
 
                             try {
-                                double totalCredit = 0.0;
+                                int totalCredit = 0;
                                 double totalGrade = 0.0;
                                 for (int i = 0; i < n; i++) {
-                                    double marks = Double.parseDouble(marksField[i].getText());
+                                    String grade = gradeField[i].getText();
 
-                                    double credit = Double.parseDouble(creditField[i].getText());
-                                    totalCredit += credit;
-                                    totalGrade += (marks) * credit;
+                                    String credit = creditField[i].getText();
+
+                                    if (grade.isEmpty() || credit.isEmpty()) {
+                                        throw new Exception();
+                                    }
+                                    if (grade.matches(".*\\d+.*") || credit.matches(".*[a-zA-Z].*")) {
+
+                                        throw new Exception();
+                                    }
+
+                                    totalCredit += Integer.parseInt(credit);
+                                    totalGrade += GradePoint(grade) * Integer.parseInt(credit);
                                 }
                                 double cgpa = totalGrade / totalCredit;
                                 UIManager.put("OptionPane.messageFont",
@@ -131,7 +141,7 @@ public class AcademicCalculatorGui {
                                 UIManager.put("OptionPane.messageFont",
                                         new FontUIResource(new Font("Arial", Font.PLAIN, 30)));
 
-                                JOptionPane.showMessageDialog(f1, "Invalid or Incomplete Input ");
+                                JOptionPane.showMessageDialog(f1, "Empty cell or Invalid Input");
                             }
 
                         }
@@ -140,11 +150,11 @@ public class AcademicCalculatorGui {
                     f1.setLayout(new BorderLayout());
 
                     JPanel inputPanel = new JPanel(new GridLayout(n + 1, 2));
-                    inputPanel.add(marksLabel);
+                    inputPanel.add(gradeLabel);
                     inputPanel.add(creditLabel);
 
                     for (int i = 0; i < n; i++) {
-                        inputPanel.add(marksField[i]);
+                        inputPanel.add(gradeField[i]);
                         inputPanel.add(creditField[i]);
                     }
                     f1.add(inputPanel);
@@ -161,10 +171,38 @@ public class AcademicCalculatorGui {
                     obj1.setVisible(true);
                 }
             }
+
+            public double GradePoint(String Grade) {
+
+                switch (Grade.toUpperCase()) {
+                    case "O":
+                        return 10;
+                    case "A+":
+                        return 9;
+                    case "A":
+                        return 8;
+                    case "B+":
+                        return 7;
+                    case "B":
+                        return 6;
+                    case "C":
+                        return 5;
+                    case "D":
+                        return 4;
+                    case "E":
+                        return 0;
+                    case "F":
+                        return 0;
+                    case "G":
+                        return 0;
+                    default:
+                        return 0;
+
+                }
+
+            }
         });
 
-
-        
         btn2.setSize(600, 100);
         btn2.setLocation(70, 460);
         btn2.setFont(objFont);

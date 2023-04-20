@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
-public class GradePredictorGui {
+public class AcademicCalculatorGui {
     private static JPanel mainpanel, p1, p2, p3, p4;
     private static JLabel lb1, lb2, lb3, lb4, lb5;
     private static JTextField ip1, ip2, ip3, ip4, ip5;

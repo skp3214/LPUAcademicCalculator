@@ -163,6 +163,8 @@ public class GradePredictorGui {
             }
         });
 
+
+        
         btn2.setSize(600, 100);
         btn2.setLocation(70, 460);
         btn2.setFont(objFont);

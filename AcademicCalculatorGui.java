@@ -48,27 +48,30 @@ public class AcademicCalculatorGui {
         obj1.setLocationRelativeTo(null);
         Container c = obj1.getContentPane();
         Color c1 = new Color(10, 50, 60);
+        Color c2 = new Color(228, 147, 147);
+        Color c3 = new Color(64, 142, 145);
+        Color c4 = new Color(203, 228, 222);
+        Color c5 = new Color(0, 0, 0);
         c.setBackground(c1);
         obj1.setLayout(null);
 
         JLabel gradePredictor = new JLabel("ACADEMIC");
         gradePredictor.setFont(new Font("Serif", Font.PLAIN, 70));
-        gradePredictor.setForeground(Color.white);
+        gradePredictor.setForeground(c2);
         gradePredictor.setBounds(185, 0, 700, 130);
         obj1.add(gradePredictor);
 
         JLabel gradePredictor2 = new JLabel("CALCULATOR");
         gradePredictor2.setFont(new Font("Serif", Font.PLAIN, 70));
-        gradePredictor2.setForeground(Color.white);
+        gradePredictor2.setForeground(c2);
         gradePredictor2.setBounds(150, 65, 700, 130);
         obj1.add(gradePredictor2);
-
-        JButton btn1 = new JButton("CGPA Calculator");
-        JButton btn2 = new JButton("Grade, GradePoint, Minimum Marks, Total Credit ");
 
         Font objFont = new Font("Serif", Font.PLAIN, 27);
         Cursor objCur = new Cursor(Cursor.HAND_CURSOR);
 
+        JButton btn1 = new JButton("CGPA Calculator");
+        btn1.setForeground(c1);
         btn1.setSize(600, 100);
         btn1.setLocation(70, 330);
         btn1.setFont(objFont);
@@ -86,8 +89,10 @@ public class AcademicCalculatorGui {
                     f1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
                     JLabel gradeLabel = new JLabel("  Enter Grade ");
+                    gradeLabel.setForeground(c4);
                     gradeLabel.setFont(new Font("Ariel", 1, 20));
                     JLabel creditLabel = new JLabel("  Enter Credit");
+                    creditLabel.setForeground(c4);
                     creditLabel.setFont(new Font("Ariel", 1, 20));
 
                     int n = Integer
@@ -99,15 +104,20 @@ public class AcademicCalculatorGui {
                     for (int i = 0; i < n; i++) {
 
                         gradeField[i] = new JTextField(5);
+                        gradeField[i].setBackground(c3);
+                        gradeField[i].setForeground(c5);
                         gradeField[i].setFont(new Font("Ariel", 1, 30));
                         gradeField[i].setHorizontalAlignment(JTextField.CENTER);
 
                         creditField[i] = new JTextField(5);
+                        creditField[i].setBackground(c3);
+                        creditField[i].setForeground(c5);
                         creditField[i].setFont(new Font("Ariel", 1, 30));
                         creditField[i].setHorizontalAlignment(JTextField.CENTER);
                     }
 
                     JButton calculateButton = new JButton("Calculate");
+                    calculateButton.setForeground(c1);
                     calculateButton.setBounds(10, 760, 300, 60);
                     calculateButton.setFont(new Font("Serif", 0, 50));
                     calculateButton.addActionListener(new ActionListener() {
@@ -150,6 +160,7 @@ public class AcademicCalculatorGui {
                     f1.setLayout(new BorderLayout());
 
                     JPanel inputPanel = new JPanel(new GridLayout(n + 1, 2));
+                    inputPanel.setBackground(new Color(44, 51, 51));
                     inputPanel.add(gradeLabel);
                     inputPanel.add(creditLabel);
 
@@ -203,6 +214,8 @@ public class AcademicCalculatorGui {
             }
         });
 
+        JButton btn2 = new JButton("Grade, GradePoint, Minimum Marks, Total Credit ");
+        btn2.setForeground(c1);
         btn2.setSize(600, 100);
         btn2.setLocation(70, 460);
         btn2.setFont(objFont);
@@ -238,28 +251,30 @@ public class AcademicCalculatorGui {
 
                 JLabel g1 = new JLabel("CALCULATE");
                 g1.setFont(new Font("Serif", Font.PLAIN, 80));
-                g1.setForeground(Color.white);
+                g1.setForeground(c2);
                 g1.setBounds(145, 0, 700, 130);
                 p1.add(g1);
 
                 JLabel g2 = new JLabel("GRADE");
                 g2.setFont(new Font("Serif", Font.PLAIN, 80));
-                g2.setForeground(Color.white);
+                g2.setForeground(c2);
                 g2.setBounds(235, 75, 700, 130);
                 p1.add(g2);
 
                 lb1 = new JLabel("Enter your marks: ");
                 lb1.setFont(new Font("Serif", Font.PLAIN, 30));
-                lb1.setForeground(Color.white);
+                lb1.setForeground(c2);
                 lb1.setBounds(200, 350, 350, 30);
                 p1.add(lb1);
 
                 ip1 = new JTextField();
+                ip1.setHorizontalAlignment(JTextField.CENTER);
                 ip1.setFont(new Font("Serif", Font.PLAIN, 30));
                 ip1.setBounds(445, 350, 105, 30);
                 p1.add(ip1);
 
                 calculateButton = new JButton("Calculate");
+                calculateButton.setForeground(c1);
                 calculateButton.setSize(350, 30);
                 calculateButton.setLocation(200, 400);
                 calculateButton.setFont(objFont);
@@ -293,7 +308,7 @@ public class AcademicCalculatorGui {
 
                 result1 = new JLabel("Grade : ?");
                 result1.setFont(new Font("Serif", Font.PLAIN, 35));
-                result1.setForeground(Color.white);
+                result1.setForeground(c2);
                 result1.setBounds(200, 450, 350, 35);
                 p1.add(result1);
 
@@ -306,28 +321,30 @@ public class AcademicCalculatorGui {
 
                 JLabel g3 = new JLabel("CALCULATE");
                 g3.setFont(new Font("Serif", Font.PLAIN, 80));
-                g3.setForeground(Color.white);
+                g3.setForeground(c2);
                 g3.setBounds(135, 0, 700, 130);
                 p2.add(g3);
 
                 JLabel g4 = new JLabel("GRADE POINT");
                 g4.setFont(new Font("Serif", Font.PLAIN, 80));
-                g4.setForeground(Color.white);
+                g4.setForeground(c2);
                 g4.setBounds(120, 75, 700, 130);
                 p2.add(g4);
 
                 lb2 = new JLabel("Enter your marks: ");
                 lb2.setFont(new Font("Serif", Font.PLAIN, 30));
-                lb2.setForeground(Color.white);
+                lb2.setForeground(c2);
                 lb2.setBounds(200, 350, 250, 30);
                 p2.add(lb2);
 
                 ip2 = new JTextField();
+                ip2.setHorizontalAlignment(JTextField.CENTER);
                 ip2.setFont(new Font("Serif", Font.PLAIN, 30));
                 ip2.setBounds(445, 350, 105, 30);
                 p2.add(ip2);
 
                 calculateButton2 = new JButton("Calculate ");
+                calculateButton2.setForeground(c1);
                 calculateButton2.setSize(350, 30);
                 calculateButton2.setLocation(200, 400);
                 calculateButton2.setFont(objFont);
@@ -361,7 +378,7 @@ public class AcademicCalculatorGui {
 
                 result2 = new JLabel("Grade Point:  ?");
                 result2.setFont(new Font("Serif", Font.PLAIN, 35));
-                result2.setForeground(Color.white);
+                result2.setForeground(c2);
                 result2.setBounds(200, 450, 250, 35);
                 p2.add(result2);
 
@@ -373,34 +390,36 @@ public class AcademicCalculatorGui {
 
                 JLabel g5 = new JLabel("CALCULATE");
                 g5.setFont(new Font("Serif", Font.PLAIN, 75));
-                g5.setForeground(Color.white);
+                g5.setForeground(c2);
                 g5.setBounds(135, 0, 700, 130);
                 p3.add(g5);
 
                 JLabel g6 = new JLabel("MINIMUM MARKS");
                 g6.setFont(new Font("Serif", Font.PLAIN, 75));
-                g6.setForeground(Color.white);
+                g6.setForeground(c2);
                 g6.setBounds(60, 75, 700, 130);
                 p3.add(g6);
 
                 lb3 = new JLabel("Enter your Grade: ");
                 lb3.setFont(new Font("Serif", Font.PLAIN, 30));
-                lb3.setForeground(Color.white);
+                lb3.setForeground(c2);
                 lb3.setBounds(200, 350, 230, 30);
                 p3.add(lb3);
 
                 ip3 = new JTextField();
+                ip3.setHorizontalAlignment(JTextField.CENTER);
                 ip3.setFont(new Font("Serif", Font.PLAIN, 30));
                 ip3.setBounds(425, 350, 85, 30);
                 p3.add(ip3);
 
                 result3 = new JLabel("Minimum marks needed is ?");
                 result3.setFont(new Font("Serif", Font.PLAIN, 35));
-                result3.setForeground(Color.white);
+                result3.setForeground(c2);
                 result3.setBounds(200, 450, 550, 35);
                 p3.add(result3);
 
                 calculateButton3 = new JButton("Calculate");
+                calculateButton3.setForeground(c1);
                 calculateButton3.setSize(312, 30);
                 calculateButton3.setLocation(200, 400);
                 calculateButton3.setFont(objFont);
@@ -463,39 +482,42 @@ public class AcademicCalculatorGui {
 
                 JLabel g7 = new JLabel("CALCULATE");
                 g7.setFont(new Font("Serif", Font.PLAIN, 80));
-                g7.setForeground(Color.white);
+                g7.setForeground(c2);
                 g7.setBounds(125, 0, 700, 130);
                 p4.add(g7);
 
                 JLabel g8 = new JLabel("TOTAL CREDIT");
                 g8.setFont(new Font("Serif", Font.PLAIN, 80));
-                g8.setForeground(Color.white);
+                g8.setForeground(c2);
                 g8.setBounds(120, 75, 700, 130);
                 p4.add(g8);
 
                 lb4 = new JLabel("Enter Subject Credit: ");
                 lb4.setFont(new Font("Serif", Font.PLAIN, 30));
-                lb4.setForeground(Color.white);
+                lb4.setForeground(c2);
                 lb4.setBounds(170, 300, 300, 30);
                 p4.add(lb4);
 
                 lb5 = new JLabel("Enter Subject GradePoint: ");
                 lb5.setFont(new Font("Serif", Font.PLAIN, 30));
-                lb5.setForeground(Color.white);
+                lb5.setForeground(c2);
                 lb5.setBounds(170, 350, 350, 30);
                 p4.add(lb5);
 
                 ip4 = new JTextField();
+                ip4.setHorizontalAlignment(JTextField.CENTER);
                 ip4.setFont(new Font("Serif", Font.PLAIN, 30));
                 ip4.setBounds(485, 300, 60, 30);
                 p4.add(ip4);
 
                 ip5 = new JTextField();
+                ip5.setHorizontalAlignment(JTextField.CENTER);
                 ip5.setFont(new Font("Serif", Font.PLAIN, 30));
                 ip5.setBounds(485, 350, 60, 30);
                 p4.add(ip5);
 
                 calculateButton4 = new JButton("Calculate");
+                calculateButton4.setForeground(c1);
                 calculateButton4.setSize(376, 30);
                 calculateButton4.setLocation(170, 400);
                 calculateButton4.setFont(objFont);
@@ -514,7 +536,7 @@ public class AcademicCalculatorGui {
 
                 result4 = new JLabel("Total Credit: ?");
                 result4.setFont(new Font("Serif", Font.PLAIN, 35));
-                result4.setForeground(Color.white);
+                result4.setForeground(c2);
                 result4.setBounds(200, 450, 350, 35);
                 p4.add(result4);
 

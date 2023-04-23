@@ -14,7 +14,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -38,7 +37,7 @@ public class AcademicCalculatorGui {
     public static void main(String[] args) {
         JFrame obj1 = new JFrame("");
         obj1.setResizable(false);
-        obj1.setTitle("Academic Calculator");
+        obj1.setTitle("LPU Academic Calculator");
 
         ImageIcon icon = new ImageIcon("ok.jpg");
         obj1.setIconImage(icon.getImage());
@@ -47,23 +46,27 @@ public class AcademicCalculatorGui {
         obj1.setLocationRelativeTo(null);
         Container c = obj1.getContentPane();
         Color c1 = new Color(10, 50, 60);
-        Color c2 = new Color(237,241,214);
-        Color c3 = new Color(64, 142, 145);
-        Color c4 = new Color(203, 228, 222);
+        Color c2 = new Color(237, 241, 214);
         Color c5 = new Color(0, 0, 0);
-        c.setBackground(c1);
+        c.setBackground(c5);
         obj1.setLayout(null);
+
+        JLabel lpu = new JLabel("LPU");
+        lpu.setFont(new Font("Serif", Font.PLAIN, 70));
+        lpu.setForeground(new Color(232,106,51));
+        lpu.setBounds(315, 0, 700, 130);
+        obj1.add(lpu);
 
         JLabel gradePredictor = new JLabel("ACADEMIC");
         gradePredictor.setFont(new Font("Serif", Font.PLAIN, 70));
         gradePredictor.setForeground(c2);
-        gradePredictor.setBounds(185, 0, 700, 130);
+        gradePredictor.setBounds(190, 60, 700, 130);
         obj1.add(gradePredictor);
 
         JLabel gradePredictor2 = new JLabel("CALCULATOR");
         gradePredictor2.setFont(new Font("Serif", Font.PLAIN, 70));
         gradePredictor2.setForeground(c2);
-        gradePredictor2.setBounds(150, 65, 700, 130);
+        gradePredictor2.setBounds(150, 125, 700, 130);
         obj1.add(gradePredictor2);
 
         Font objFont = new Font("Serif", Font.PLAIN, 27);
@@ -79,7 +82,8 @@ public class AcademicCalculatorGui {
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 class ProblemHandling extends Exception {
-                    ProblemHandling(String msg) {UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                    ProblemHandling(String msg) {
+                        UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
                         JOptionPane.showMessageDialog(null, msg);
                     }
                 }
@@ -93,13 +97,14 @@ public class AcademicCalculatorGui {
                     f1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
                     JLabel gradeLabel = new JLabel("  Enter Grade ");
-                    gradeLabel.setForeground(c4);
+                    gradeLabel.setForeground(c2);
                     gradeLabel.setFont(new Font("Ariel", 1, 20));
                     JLabel creditLabel = new JLabel("  Enter Credit");
-                    creditLabel.setForeground(c4);
+                    creditLabel.setForeground(c2);
                     creditLabel.setFont(new Font("Ariel", 1, 20));
 
                     int n = Integer.parseInt(JOptionPane.showInputDialog("Enter number of subjects but less than 20: "));
+                    
                     if (n > 20) {
                         throw new ProblemHandling("Enter number of subjects less than 20 ");
                     }
@@ -110,13 +115,13 @@ public class AcademicCalculatorGui {
                     for (int i = 0; i < n; i++) {
 
                         gradeField[i] = new JTextField(5);
-                        gradeField[i].setBackground(c3);
+                        gradeField[i].setBackground(c2);
                         gradeField[i].setForeground(c5);
                         gradeField[i].setFont(new Font("Ariel", 1, 30));
                         gradeField[i].setHorizontalAlignment(JTextField.CENTER);
 
                         creditField[i] = new JTextField(5);
-                        creditField[i].setBackground(c3);
+                        creditField[i].setBackground(c2);
                         creditField[i].setForeground(c5);
                         creditField[i].setFont(new Font("Ariel", 1, 30));
                         creditField[i].setHorizontalAlignment(JTextField.CENTER);
@@ -133,7 +138,6 @@ public class AcademicCalculatorGui {
                                 double totalGrade = 0.0;
                                 for (int i = 0; i < n; i++) {
                                     String grade = gradeField[i].getText();
-
                                     String credit = creditField[i].getText();
 
                                     if (grade.isEmpty()) {
@@ -145,7 +149,6 @@ public class AcademicCalculatorGui {
                                     if (!grade.matches("[oOaA][+-]?|B[+-]?|C[+-]?|D[+-]?|E|F|G|[oa][+-]?|b[+-]?|c[+-]?|d[+-]?|e|f|g")) {
                                         throw new ProblemHandling("Invalid Grade Input");
                                     }
-
                                     if (!credit.matches("1|2|3|4")) {
                                         throw new ProblemHandling("Invalid Credit Input");
                                     }
@@ -155,10 +158,10 @@ public class AcademicCalculatorGui {
                                 }
                                 double cgpa = totalGrade / totalCredit;
                                 UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
-
                                 JOptionPane.showMessageDialog(f1, "Your CGPA is: " + String.format("%.2f", cgpa));
-                            } catch (Exception ak) {
-
+                            } 
+                            catch (Exception ak) {
+                                
                             }
 
                         }
@@ -167,7 +170,7 @@ public class AcademicCalculatorGui {
                     f1.setLayout(new BorderLayout());
 
                     JPanel inputPanel = new JPanel(new GridLayout(n + 1, 2));
-                    inputPanel.setBackground(new Color(44, 51, 51));
+                    inputPanel.setBackground(c5);
                     inputPanel.add(gradeLabel);
                     inputPanel.add(creditLabel);
 
@@ -185,9 +188,11 @@ public class AcademicCalculatorGui {
                         }
                     });
                     f1.setVisible(true);
-                } catch (Exception me) {
+                } 
+                catch (Exception me) {
                     obj1.setVisible(true);
                 }
+
             }
 
             public double GradePoint(String Grade) {
@@ -233,7 +238,7 @@ public class AcademicCalculatorGui {
             public void actionPerformed(ActionEvent e) {
                 obj1.setVisible(false);
                 JFrame f = new JFrame();
-                f.setTitle("Academic Calculator");
+                f.setTitle("LPU Academic Calculator");
                 f.setResizable(false);
                 f.setSize(750, 850);
                 f.setIconImage(icon.getImage());
@@ -253,7 +258,7 @@ public class AcademicCalculatorGui {
                 /********************* GRADE CALCULATOR **********************************/
                 p1 = new JPanel();
                 p1.setLayout(null);
-                p1.setBackground(new Color(10, 50, 60));
+                p1.setBackground(c5);
                 mainpanel.add(p1, "GRADE CALCULATOR");
 
                 JLabel g1 = new JLabel("CALCULATE");
@@ -275,6 +280,7 @@ public class AcademicCalculatorGui {
                 p1.add(lb1);
 
                 ip1 = new JTextField();
+
                 ip1.setHorizontalAlignment(JTextField.CENTER);
                 ip1.setFont(new Font("Serif", Font.PLAIN, 30));
                 ip1.setBounds(445, 350, 105, 30);
@@ -289,32 +295,42 @@ public class AcademicCalculatorGui {
                 p1.add(calculateButton);
                 calculateButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        try {
-                            if (e.getSource() == calculateButton) {
-                                int marks = Integer.parseInt(ip1.getText());
-                                if (marks >= 90 && marks <= 100)
-                                    result1.setText("Grade : O  ");
-                                else if (marks >= 80 && marks < 90)
-                                    result1.setText("Grade : A+ ");
-                                else if (marks >= 70 && marks < 80)
-                                    result1.setText("Grade :  A ");
-                                else if (marks >= 60 && marks < 70)
-                                    result1.setText("Grade :  B+ ");
-                                else if (marks >= 50 && marks < 60)
-                                    result1.setText("Grade :  B ");
-                                else if (marks >= 40 && marks < 50)
-                                    result1.setText("Grade :  C ");
-                                else if (marks >= 34 && marks < 40)
-                                    result1.setText("Grade : D ");
-                                else if (marks >= 0 && marks < 34)
-                                    result1.setText("Fail");
-                                else
-                                    throw new Exception();
-
-                            }
-                        } catch (Exception ge) {
+                        if (ip1.getText().isEmpty()) {
                             UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
-                            JOptionPane.showMessageDialog(null, "Invalid Marks Input");
+                            JOptionPane.showMessageDialog(null, "You didn't entered marks");
+                        } 
+                        else {
+                            try {
+                                if (e.getSource() == calculateButton) {
+                                    Double marks = Double.parseDouble(ip1.getText());
+                                    if (marks >= 90 && marks <= 100)
+                                        result1.setText("Grade : O  ");
+                                    else if (marks >= 80 && marks < 90)
+                                        result1.setText("Grade : A+ ");
+                                    else if (marks >= 70 && marks < 80)
+                                        result1.setText("Grade :  A ");
+                                    else if (marks >= 60 && marks < 70)
+                                        result1.setText("Grade :  B+ ");
+                                    else if (marks >= 50 && marks < 60)
+                                        result1.setText("Grade :  B ");
+                                    else if (marks >= 40 && marks < 50)
+                                        result1.setText("Grade :  C ");
+                                    else if (marks >= 34 && marks < 40)
+                                        result1.setText("Grade : D ");
+                                    else if (marks >= 0 && marks < 34)
+                                        result1.setText("Fail");
+                                    else if (marks > 100 || marks < 0) {
+                                        UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                                        JOptionPane.showMessageDialog(null, "No Grade for this marks");
+                                    } 
+                                    else
+                                        throw new Exception();
+                                }
+                            } 
+                            catch (Exception ge) {
+                                UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                                JOptionPane.showMessageDialog(null, "Enter numeric value only");
+                            }
                         }
 
                     }
@@ -330,7 +346,7 @@ public class AcademicCalculatorGui {
 
                 p2 = new JPanel();
                 p2.setLayout(null);
-                p2.setBackground(new Color(10, 50, 60));
+                p2.setBackground(c5);
                 mainpanel.add(p2, "GRADE POINT CALCULATOR");
 
                 JLabel g3 = new JLabel("CALCULATE");
@@ -366,32 +382,43 @@ public class AcademicCalculatorGui {
                 p2.add(calculateButton2);
                 calculateButton2.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        try {
-                            if (e.getSource() == calculateButton2) {
-                                int mark = Integer.parseInt(ip2.getText());
-                                if (mark >= 90 && mark <= 100)
-                                    result2.setText("Grade Point:  10 ");
-                                else if (mark >= 80 && mark < 90)
-                                    result2.setText("Grade Point:  9 ");
-                                else if (mark >= 70 && mark < 80)
-                                    result2.setText("Grade Point:  8 ");
-                                else if (mark >= 60 && mark < 70)
-                                    result2.setText("Grade Point:  7 ");
-                                else if (mark >= 50 && mark < 60)
-                                    result2.setText("Grade Point:  6 ");
-                                else if (mark >= 40 && mark < 50)
-                                    result2.setText("Grade Point:  5 ");
-                                else if (mark >= 34 && mark < 40)
-                                    result2.setText("Grade Point:  4 ");
-                                else if (mark >= 0 && mark < 34)
-                                    result2.setText("GradePoint:  0");
-                                else
-                                    throw new Exception();
-
-                            }
-                        } catch (Exception ge) {
+                        if (ip2.getText().isEmpty()) {
                             UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
-                            JOptionPane.showMessageDialog(null, "Invalid Marks Input");
+                            JOptionPane.showMessageDialog(null, "You didn't entered marks");
+                        } 
+                        else {
+                            try {
+                                if (e.getSource() == calculateButton2) {
+                                    Double mark = Double.parseDouble(ip2.getText());
+                                    if (mark >= 90 && mark <= 100)
+                                        result2.setText("Grade Point:  10 ");
+                                    else if (mark >= 80 && mark < 90)
+                                        result2.setText("Grade Point:  9 ");
+                                    else if (mark >= 70 && mark < 80)
+                                        result2.setText("Grade Point:  8 ");
+                                    else if (mark >= 60 && mark < 70)
+                                        result2.setText("Grade Point:  7 ");
+                                    else if (mark >= 50 && mark < 60)
+                                        result2.setText("Grade Point:  6 ");
+                                    else if (mark >= 40 && mark < 50)
+                                        result2.setText("Grade Point:  5 ");
+                                    else if (mark >= 34 && mark < 40)
+                                        result2.setText("Grade Point:  4 ");
+                                    else if (mark >= 0 && mark < 34)
+                                        result2.setText("GradePoint:  0");
+                                    else if (mark > 100 && mark < 0) {
+                                        UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                                        JOptionPane.showMessageDialog(null, "No GradePoint for this mark");
+                                    }
+                                    else
+                                        throw new Exception();
+
+                                }
+                            } 
+                            catch (Exception ge) {
+                                UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                                JOptionPane.showMessageDialog(null, "Enter numeric value only.");
+                            }
                         }
                     }
                 });
@@ -405,7 +432,7 @@ public class AcademicCalculatorGui {
                 /**************** MINIMUM MARKS CALCULATOR ***********************/
                 p3 = new JPanel();
                 p3.setLayout(null);
-                p3.setBackground(new Color(10, 50, 60));
+                p3.setBackground(c5);
                 mainpanel.add(p3, "MINIMUM MARKS CALCULATOR");
 
                 JLabel g5 = new JLabel("CALCULATE");
@@ -447,62 +474,69 @@ public class AcademicCalculatorGui {
                 p3.add(calculateButton3);
                 calculateButton3.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
+                        if (ip3.getText().isEmpty()) {
+                            UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                            JOptionPane.showMessageDialog(null, "You didn't enter grade.");
+                        } 
+                        else {
+                            try {
+                                if (e.getSource() == calculateButton3) {
+                                    String grade = ip3.getText().toUpperCase();
 
-                        try {
-                            if (e.getSource() == calculateButton3) {
-                                String grade = ip3.getText().toUpperCase();
+                                    switch (grade) {
+                                        case "O":
+                                            result3.setText("Minimum marks needed is 90 ");
+                                            break;
+                                        case "A+":
+                                            result3.setText("Minimum marks needed is 80 ");
+                                            break;
+                                        case "A":
+                                            result3.setText("Minimum marks needed is 70 ");
+                                            break;
+                                        case "B+":
+                                            result3.setText("Minimum marks needed is 60 ");
+                                            break;
+                                        case "B":
+                                            result3.setText("Minimum marks needed is 50 ");
+                                            break;
+                                        case "C":
+                                            result3.setText("Minimum marks needed is 40 ");
+                                            break;
+                                        case "D":
+                                            result3.setText("Minimum marks needed is 34 ");
+                                            break;
+                                        case "E":
+                                            result3.setText("Reappeaar ");
+                                            break;
+                                        case "F":
+                                            result3.setText("Fail ");
+                                            break;
+                                        case "G":
+                                            result3.setText("Backlog ");
+                                            break;
+                                        case "I":
+                                            result3.setText("Result Incomplete ");
+                                            break;
+                                        default:
+                                            throw new Exception();
 
-                                switch (grade) {
-                                    case "O":
-                                        result3.setText("Minimum marks needed is 90 ");
-                                        break;
-                                    case "A+":
-                                        result3.setText("Minimum marks needed is 80 ");
-                                        break;
-                                    case "A":
-                                        result3.setText("Minimum marks needed is 70 ");
-                                        break;
-                                    case "B+":
-                                        result3.setText("Minimum marks needed is 60 ");
-                                        break;
-                                    case "B":
-                                        result3.setText("Minimum marks needed is 50 ");
-                                        break;
-                                    case "C":
-                                        result3.setText("Minimum marks needed is 40 ");
-                                        break;
-                                    case "D":
-                                        result3.setText("Minimum marks needed is 34 ");
-                                        break;
-                                    case "E":
-                                        result3.setText("Reappeaar ");
-                                        break;
-                                    case "F":
-                                        result3.setText("Fail ");
-                                        break;
-                                    case "G":
-                                        result3.setText("Backlog ");
-                                        break;
-                                    case "I":
-                                        result3.setText("Result Incomplete ");
-                                        break;
-                                    default:
-                                        throw new Exception();
+                                    }
 
                                 }
-
+                            } 
+                            catch (Exception ge) {
+                                UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                                JOptionPane.showMessageDialog(null, "Invalid Grade Input");
                             }
-                        } catch (Exception ge) {
-                            UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
-                            JOptionPane.showMessageDialog(null, "Invalid Grade Input");
                         }
+
                     }
                 });
 
                 /************ TOTAL CREDIT CALCULATOR *********************/
                 p4 = new JPanel();
                 p4.setLayout(null);
-                p4.setBackground(new Color(10, 50, 60));
+                p4.setBackground(c5);
                 mainpanel.add(p4, "TOTAL CREDIT CALCULATOR");
 
                 JLabel g7 = new JLabel("CALCULATE");
@@ -549,19 +583,50 @@ public class AcademicCalculatorGui {
                 calculateButton4.setCursor(objCur);
                 p4.add(calculateButton4);
                 calculateButton4.addActionListener(new ActionListener() {
+
                     public void actionPerformed(ActionEvent e) {
 
-                        try {
-                            if (e.getSource() == calculateButton4) {
-                                int credit = Integer.parseInt(ip4.getText());
-                                int gradePoint = Integer.parseInt(ip5.getText());
-                                result4.setText("Total Credit: " + credit * gradePoint);
-                            } else
-                                throw new Exception();
-                        } catch (Exception ge) {
+                        if (ip4.getText().isEmpty() && ip5.getText().isEmpty()) {
                             UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
-                            JOptionPane.showMessageDialog(null, "Enter Numeric Value Only");
+                            JOptionPane.showMessageDialog(null, "You didn't entered any value.");
+                        } 
+                        else if (ip4.getText().isEmpty()) {
+                            UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                            JOptionPane.showMessageDialog(null, "You didn't entered the credit.");
+                        } 
+                        else if (ip5.getText().isEmpty()) {
+                            UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                            JOptionPane.showMessageDialog(null, "You didn't entered the gradepoint.");
+                        } 
+                        else {
+                            try {
+                                if (e.getSource() == calculateButton4) {
+                                    int credit = Integer.parseInt(ip4.getText());
+                                    int gradePoint = Integer.parseInt(ip5.getText());
+                                    if (credit > 0 && credit < 5) {
+                                        if (gradePoint > 3 && gradePoint <= 10) {
+                                            result4.setText("Total Credit: " + credit * gradePoint);
+                                        } 
+                                        else {
+
+                                            UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                                            JOptionPane.showMessageDialog(null, "Enter GradePoint between 3-11.");
+                                        }
+                                    } 
+                                    else {
+                                        UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                                        JOptionPane.showMessageDialog(null, "Enter Credit 1,2,3,or 4.");
+
+                                    }
+                                } 
+                                else
+                                    throw new Exception();
+                            } catch (Exception ge) {
+                                UIManager.put("OptionPane.messageFont",new FontUIResource(new Font("Arial", Font.PLAIN, 20)));
+                                JOptionPane.showMessageDialog(null, "Enter Numeric Value Only");
+                            }
                         }
+
                     }
                 });
 

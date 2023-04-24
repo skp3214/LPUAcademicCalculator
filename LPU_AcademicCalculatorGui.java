@@ -706,7 +706,6 @@ public class LPU_AcademicCalculatorGui {
                 f.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent ke) {
-
                         obj1.setVisible(true);
 
                     }

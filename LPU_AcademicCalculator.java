@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 // import javax.swing.text.html.StyleSheet;
 
-public class AcademicCalculator {
+public class LPU_AcademicCalculator {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("1.Show Full result");
